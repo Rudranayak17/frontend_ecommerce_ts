@@ -8,7 +8,7 @@ import AdminSidebar from "../../components/admin/AdminSidebar";
 import TableHOC from "../../components/admin/TableHOC";
 import { Skeleton } from "../../components/loader";
 import { useAllProductsQuery } from "../../redux/api/productAPI";
-import { RootState, server } from "../../redux/store";
+import { RootState } from "../../redux/store";
 import { CustomError } from "../../types/api-types";
 
 interface DataType {
@@ -45,7 +45,7 @@ const columns: Column<DataType>[] = [
 const Products = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
 
-  const { isLoading, isError, error, data } = useAllProductsQuery(user?._id!);
+  const { isLoading, isError, error, data } = useAllProductsQuery(user?._id as string);
 
   const [rows, setRows] = useState<DataType[]>([]);
 

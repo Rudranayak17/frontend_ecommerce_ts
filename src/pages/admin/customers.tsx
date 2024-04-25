@@ -1,5 +1,5 @@
 import { ReactElement, useEffect, useState } from "react";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import { FaTrash } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Column } from "react-table";
@@ -11,7 +11,7 @@ import {
   useDeleteUserMutation,
 } from "../../redux/api/userAPI";
 import { RootState } from "../../redux/store";
-import { CustomError } from "../../types/api-types";
+// import { CustomError } from "../../types/api-types";
 import { responseToast } from "../../utils/features";
 
 interface DataType {
@@ -53,14 +53,14 @@ const columns: Column<DataType>[] = [
 const Customers = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
 
-  const { isLoading, data, isError, error } = useAllUsersQuery(user?._id!);
+  const { isLoading, data, isError } = useAllUsersQuery(user?._id as string);
 
   const [rows, setRows] = useState<DataType[]>([]);
 
   const [deleteUser] = useDeleteUserMutation();
 
   const deleteHandler = async (userId: string) => {
-    const res = await deleteUser({ userId, adminUserId: user?._id! });
+    const res = await deleteUser({ userId, adminUserId: user?._id as string });
     // console.log(res.data);
    
     responseToast(res, null, "");

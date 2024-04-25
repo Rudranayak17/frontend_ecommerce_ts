@@ -14,7 +14,7 @@ export type Product = {
   stock: number;
   category: string;
   photo: {
-    public_url: string;
+    public_id: string;
     url: string;
   }
   _id: string;
